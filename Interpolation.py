@@ -34,13 +34,22 @@ for i in range(len(D)-1):
 Ifunc = syi.interp1d(xdata, D[:,2])
 t = np.arange(0,xdata[-1],250/1000)
 Height = Ifunc(t)
+np.save("Height data.npy", Height)
 
 plt.plot(t,Height)
 plt.xlabel('Distance in [km]')
 plt.ylabel('Height in [m]')
 plt.show()
 
-K = [300, 140, 40]
+#Plotting bomb locations:
+L = np.load("Locations.npy")
+s=L*Height
+
+plt.plot(t,Height)
+plt.plot(t,s, "ro")
+plt.xlabel('Distance in [km]')
+plt.ylabel('Height in [m]')
+plt.show()
 
 
 
